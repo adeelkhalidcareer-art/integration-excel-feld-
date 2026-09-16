@@ -1,0 +1,52 @@
+field_number,section,field_label,erpnext_doctype,erpnext_source,erpnext_target,field_type,required,transformation,notes
+1,Invoice Details,Invoice Number,Sales Invoice,name,name,Data,yes,Use ERPNext invoice name,Header
+2,Invoice Details,Invoice Date,Sales Invoice,posting_date,invoice_date,Date,yes,Format YYYY-MM-DD,Header
+3,Invoice Details,Invoice Type Code,Sales Invoice,custom_invoice_type_code,invoice_type_code,Data,yes,Validate against UAE code list,Create custom field
+4,Invoice Details,Invoice Currency Code,Sales Invoice,currency,invoice_currency_code,Data,yes,ISO 4217 code,Usually AED
+5,Invoice Details,Invoice Transaction Type Code,Sales Invoice,custom_transaction_type_code,invoice_transaction_type_code,Data,yes,Validate against UAE code list,Create custom field
+6,Invoice Details,Payment Due Date,Sales Invoice,due_date,payment_due_date,Date,yes,Format YYYY-MM-DD,Header
+7,Invoice Details,Business Process Type,Sales Invoice,custom_business_process_type,business_process_type,Data,yes,Use configured Peppol/UAE value,Create custom field
+8,Invoice Details,Specification Identifier,Sales Invoice,custom_specification_identifier,specification_identifier,Data,yes,Use configured specification identifier,Create custom field
+9,Invoice Details,Payment Means Type Code,Sales Invoice,custom_payment_means_type_code,payment_means_type_code,Data,yes,Map ERPNext payment method to code,Create custom field
+10,Seller Details,Seller Name,Company,company_name,seller_name,Data,yes,Use invoice company,Read from Company
+11,Seller Details,Seller Electronic Address,Company,custom_seller_electronic_address,seller_electronic_address,Data,yes,Trim and validate address,Create custom field
+12,Seller Details,Seller Electronic Identifier,Company,custom_seller_electronic_identifier,seller_electronic_identifier,Data,yes,Preserve identifier scheme,Create custom field
+13,Seller Details,Seller Legal Registration Identifier,Company,custom_seller_legal_registration_identifier,seller_legal_registration_identifier,Data,yes,Preserve registration number,Create custom field
+14,Seller Details,Seller Legal Registration Identifier Type,Company,custom_seller_legal_registration_identifier_type,seller_legal_registration_identifier_type,Data,yes,Use configured identifier scheme,Create custom field
+15,Seller Details,Seller Tax Registration Identifier,Company,tax_id,seller_tax_registration_identifier,Data,yes,Remove formatting only if required,ERPNext standard tax_id
+16,Seller Details,Seller Tax Scheme Code,Company,custom_seller_tax_scheme_code,seller_tax_scheme_code,Data,yes,Use VAT scheme code,Create custom field
+17,Seller Details,Seller Address Line 1,Address,address_line1,seller_address_line_1,Data,yes,Use Company primary address,Address record
+18,Seller Details,Seller City,Address,city,seller_city,Data,yes,Use Company primary address,Address record
+19,Seller Details,Seller Country Subdivision,Address,state,seller_country_subdivision,Data,yes,Use Company primary address,Address record
+20,Seller Details,Seller Country Code,Address,country,seller_country_code,Data,yes,Convert country name to ISO 3166-1 alpha-2,Address record
+21,Buyer Details,Buyer Name,Customer,customer_name,buyer_name,Data,yes,Use invoice customer,Customer master
+22,Buyer Details,Buyer Electronic Address,Customer,custom_buyer_electronic_address,buyer_electronic_address,Data,yes,Trim and validate address,Create custom field
+23,Buyer Details,Buyer Electronic Identifier,Customer,custom_buyer_electronic_identifier,buyer_electronic_identifier,Data,yes,Preserve identifier scheme,Create custom field
+24,Buyer Details,Buyer Legal Registration Identifier,Customer,custom_buyer_legal_registration_identifier,buyer_legal_registration_identifier,Data,no,Preserve registration number,Create custom field
+25,Buyer Details,Buyer Tax Scheme Code,Customer,custom_buyer_tax_scheme_code,buyer_tax_scheme_code,Data,yes,Use VAT scheme code,Create custom field
+26,Buyer Details,Buyer Address Line 1,Address,address_line1,buyer_address_line_1,Data,yes,Use customer address,Address record
+27,Buyer Details,Buyer City,Address,city,buyer_city,Data,yes,Use customer address,Address record
+28,Buyer Details,Buyer Country Subdivision,Address,state,buyer_country_subdivision,Data,yes,Use customer address,Address record
+29,Buyer Details,Buyer Country Code,Address,country,buyer_country_code,Data,yes,Convert country name to ISO 3166-1 alpha-2,Address record
+30,Document Totals,Sum of Invoice Line Net Amount,Sales Invoice,net_total,sum_invoice_line_net_amount,Currency,yes,Round using invoice currency precision,Calculated
+31,Document Totals,Invoice Total Amount Without Tax,Sales Invoice,net_total,invoice_total_amount_without_tax,Currency,yes,Round using invoice currency precision,Calculated
+32,Document Totals,Invoice Total Tax Amount,Sales Invoice,total_taxes_and_charges,invoice_total_tax_amount,Currency,yes,Round using invoice currency precision,Calculated
+33,Document Totals,Invoice Total Amount With Tax,Sales Invoice,grand_total,invoice_total_amount_with_tax,Currency,yes,Round using invoice currency precision,Calculated
+34,Document Totals,Amount Due for Payment,Sales Invoice,outstanding_amount,amount_due_for_payment,Currency,yes,Round using invoice currency precision,Calculated
+35,Tax Breakdown,Tax Category Taxable Amount,Sales Taxes and Charges,custom_taxable_amount,tax_category_taxable_amount,Currency,yes,Use tax row taxable base,Create custom child-table field
+36,Tax Breakdown,Tax Category Tax Amount,Sales Taxes and Charges,tax_amount,tax_category_tax_amount,Currency,yes,Use tax row tax amount,Calculated
+37,Tax Breakdown,Tax Category Code,Sales Taxes and Charges,custom_tax_category_code,tax_category_code,Data,yes,Validate UAE tax category code,Create custom child-table field
+38,Tax Breakdown,Tax Category Rate,Sales Taxes and Charges,rate,tax_category_rate,Percent,yes,Use tax row rate,Standard tax row field
+39,Invoice Line,Invoice Line Identifier,Sales Invoice Item,custom_invoice_line_identifier,invoice_line_identifier,Data,yes,Use stable line sequence or UUID,Create custom child-table field
+40,Invoice Line,Invoiced Quantity,Sales Invoice Item,qty,invoiced_quantity,Float,yes,Must be greater than zero,Standard item field
+41,Invoice Line,Unit of Measure Code,Sales Invoice Item,uom,unit_of_measure_code,Data,yes,Map ERPNext UOM to code,Standard item field
+42,Invoice Line,Invoice Line Net Amount,Sales Invoice Item,net_amount,invoice_line_net_amount,Currency,yes,Round using invoice currency precision,Standard calculated field
+43,Invoice Line,Item Net Price,Sales Invoice Item,rate,item_net_price,Currency,yes,Use net rate per base quantity,Standard rate field
+44,Invoice Line,Item Gross Price,Sales Invoice Item,custom_item_gross_price,item_gross_price,Currency,yes,Calculate net price plus per-unit VAT,Create custom child-table field
+45,Invoice Line,Item Price Base Quantity,Sales Invoice Item,custom_price_base_quantity,item_price_base_quantity,Float,yes,Default to 1 when not supplied,Create custom child-table field
+46,Invoice Line,Invoiced Item Tax Category Code,Sales Invoice Item,custom_invoiced_item_tax_category_code,invoiced_item_tax_category_code,Data,yes,Map item tax category,Create custom child-table field
+47,Invoice Line,Invoiced Item Tax Rate,Sales Invoice Item,custom_invoiced_item_tax_rate,invoiced_item_tax_rate,Percent,yes,Resolve from item tax template or tax row,Create custom child-table field
+48,Invoice Line,VAT Line Amount,Sales Invoice Item,custom_vat_line_amount,vat_line_amount,Currency,yes,Calculate line net amount times tax rate,Create custom child-table field
+49,Invoice Line,Invoice Line Amount in AED,Sales Invoice Item,base_amount,invoice_line_amount_aed,Currency,yes,Use company currency base amount,Standard calculated field
+50,Invoice Line,Item Name,Item,item_name,item_name,Data,yes,Use linked Item record,Item master
+51,Invoice Line,Item Description,Sales Invoice Item,description,item_description,Text,yes,Use line description with Item fallback,Standard item field
