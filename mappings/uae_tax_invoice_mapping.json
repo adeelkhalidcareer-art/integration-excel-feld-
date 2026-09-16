@@ -1,0 +1,101 @@
+{
+  "name": "UAE Standard Tax Invoice",
+  "version": "1.0",
+  "site_url": "https://erpnext-lhs-xnd.k.frappe.cloud",
+  "api_url": "https://erpnext-lhs-xnd.k.frappe.cloud/api",
+  "doctype": "Sales Invoice",
+  "currency": "AED",
+  "sections": {
+    "invoice_details": {
+      "doctype": "Sales Invoice",
+      "fields": {
+        "invoice_number": "name",
+        "invoice_date": "posting_date",
+        "invoice_type_code": "custom_invoice_type_code",
+        "invoice_currency_code": "currency",
+        "invoice_transaction_type_code": "custom_transaction_type_code",
+        "payment_due_date": "due_date",
+        "business_process_type": "custom_business_process_type",
+        "specification_identifier": "custom_specification_identifier",
+        "payment_means_type_code": "custom_payment_means_type_code"
+      }
+    },
+    "seller_details": {
+      "company_doctype": "Company",
+      "address_doctype": "Address",
+      "fields": {
+        "seller_name": "company_name",
+        "seller_electronic_address": "custom_seller_electronic_address",
+        "seller_electronic_identifier": "custom_seller_electronic_identifier",
+        "seller_legal_registration_identifier": "custom_seller_legal_registration_identifier",
+        "seller_legal_registration_identifier_type": "custom_seller_legal_registration_identifier_type",
+        "seller_tax_registration_identifier": "tax_id",
+        "seller_tax_scheme_code": "custom_seller_tax_scheme_code",
+        "seller_address_line_1": "address_line1",
+        "seller_city": "city",
+        "seller_country_subdivision": "state",
+        "seller_country_code": "country"
+      }
+    },
+    "buyer_details": {
+      "customer_doctype": "Customer",
+      "address_doctype": "Address",
+      "fields": {
+        "buyer_name": "customer_name",
+        "buyer_electronic_address": "custom_buyer_electronic_address",
+        "buyer_electronic_identifier": "custom_buyer_electronic_identifier",
+        "buyer_legal_registration_identifier": "custom_buyer_legal_registration_identifier",
+        "buyer_tax_scheme_code": "custom_buyer_tax_scheme_code",
+        "buyer_address_line_1": "address_line1",
+        "buyer_city": "city",
+        "buyer_country_subdivision": "state",
+        "buyer_country_code": "country"
+      }
+    },
+    "document_totals": {
+      "doctype": "Sales Invoice",
+      "fields": {
+        "sum_invoice_line_net_amount": "net_total",
+        "invoice_total_amount_without_tax": "net_total",
+        "invoice_total_tax_amount": "total_taxes_and_charges",
+        "invoice_total_amount_with_tax": "grand_total",
+        "amount_due_for_payment": "outstanding_amount"
+      }
+    },
+    "tax_breakdown": {
+      "child_table_doctype": "Sales Taxes and Charges",
+      "fields": {
+        "tax_category_taxable_amount": "custom_taxable_amount",
+        "tax_category_tax_amount": "tax_amount",
+        "tax_category_code": "custom_tax_category_code",
+        "tax_category_rate": "rate"
+      }
+    },
+    "invoice_lines": {
+      "child_table_doctype": "Sales Invoice Item",
+      "fields": {
+        "invoice_line_identifier": "custom_invoice_line_identifier",
+        "invoiced_quantity": "qty",
+        "unit_of_measure_code": "uom",
+        "invoice_line_net_amount": "net_amount",
+        "item_net_price": "rate",
+        "item_gross_price": "custom_item_gross_price",
+        "item_price_base_quantity": "custom_price_base_quantity",
+        "invoiced_item_tax_category_code": "custom_invoiced_item_tax_category_code",
+        "invoiced_item_tax_rate": "custom_invoiced_item_tax_rate",
+        "vat_line_amount": "custom_vat_line_amount",
+        "invoice_line_amount_aed": "base_amount",
+        "item_name": "item_name",
+        "item_description": "description"
+      }
+    }
+  },
+  "implementation_notes": [
+    "Fields beginning with custom_ must be created as ERPNext custom fields before import.",
+    "Seller and buyer address fields are resolved from the linked Address record, not stored directly on Sales Invoice.",
+    "Tax breakdown is one or more rows in the Sales Taxes and Charges child table.",
+    "Invoice line fields are one row per item in the Sales Invoice Item child table.",
+    "Use ERPNext calculated totals instead of trusting imported values.",
+    "Confirm final UAE tax codes, identifier schemes, UOM mapping, and ASP values before production use."
+  ]
+}
