@@ -1,0 +1,6 @@
+      - name: Send invoices to ERPNext
+        env:
+          ERPNEXT_URL: ${{ secrets.ERPNEXT_URL }}
+          ERPNEXT_API_KEY: ${{ secrets.ERPNEXT_API_KEY }}
+          ERPNEXT_API_SECRET: ${{ secrets.ERPNEXT_API_SECRET }}
+        run: python src/main.py
